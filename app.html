@@ -83,26 +83,376 @@
         .btn-check { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); color: white; }
         .btn-next { background: linear-gradient(135deg, var(--success) 0%, #0da271 100%); color: white; }
         .btn-back { background: #f8fafc; color: var(--text-primary); border: 2px solid #e2e8f0; }
-        .stats-overview { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 30px; }
-        .stat-card { background: var(--bg-card); border-radius: var(--border); padding: 24px; text-align: center; box-shadow: var(--shadow-sm); }
-        .stat-card h3 { font-size: 14px; color: var(--text-secondary); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
-        .stat-card .value { font-size: 28px; font-weight: 700; color: var(--text-primary); }
-        .stat-card .label { font-size: 14px; color: var(--text-secondary); }
-        .progress-card { background: var(--bg-card); border-radius: var(--border-radius); padding: 28px; box-shadow: var(--shadow-sm); text-align: center; }
-        .progress-card h3 { font-size:18px; margin-bottom: 16px; color: var(--text-primary); }
-        .progress-circle { position: relative; width: 120px; height: 120px; margin: 0 auto; }
-        .progress-circle svg { transform: rotate(-90deg); }
-        .progress-circle circle { fill: none; stroke: #e2e8f0; stroke-width: 8; }
-        .progress-circle .progress-value { fill: none; stroke: var(--primary); stroke-width: 8; stroke-linecap: round; transition: stroke-dasharray 0.5s ease; }
-        .progress-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; font-weight: 700; font-size: 20px; }
-        .progress-text small { font-size: 14px; color: var(--text-secondary); display: block; }
-        .activity-week { background: var(--bg-card); border-radius: var(--border-radius); padding: 24px; margin-top: 30px; box-shadow: var(--shadow-sm); }
-        .week-days { display: flex; justify-content: space-between; margin: 20px 0; }
-        .day-item { text-align: center; }
-        .day-number { font-size: 14px; color: var(--text-secondary); margin-bottom: 8px; }
-        .day-progress { width: 40px; height: 40px; margin: 0 auto; position: relative; }
-        .day-progress-bar { width: 100%; height: 100%; border-radius: 50%; background: #e2e8f0; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: var(--text-primary); }
-        .day-progress.active .day-progress-bar { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); color: white; }
+        /* Stats Page Styles */
+        .stats-container {
+            max-width: 1200px;
+            width: 100%;
+            padding: 0 20px;
+        }
+        
+        .stats-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .stats-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+        
+        .stats-subtitle {
+            color: var(--text-secondary);
+            font-size: 18px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+        
+        .stat-card {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: 28px;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(99, 102, 241, 0.18);
+        }
+        
+        .stat-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 16px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: white;
+        }
+        
+        .stat-card.primary .stat-icon {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+        
+        .stat-card.secondary .stat-icon {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+        }
+        
+        .stat-card.success .stat-icon {
+            background: linear-gradient(135deg, var(--success) 0%, #0da271 100%);
+        }
+        
+        .stat-card.accent .stat-icon {
+            background: linear-gradient(135deg, var(--accent) 0%, #f472b6 100%);
+        }
+        
+        .stat-card h3 {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .stat-card .value {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+        
+        .stat-card .label {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        
+        .progress-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+        
+        .progress-card {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: 32px;
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .progress-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(99, 102, 241, 0.18);
+        }
+        
+        .progress-card h3 {
+            font-size: 20px;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+        }
+        
+        .progress-circle {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 16px;
+        }
+        
+        .progress-circle svg {
+            transform: rotate(-90deg);
+            width: 100%;
+            height: 100%;
+        }
+        
+        .progress-circle circle {
+            fill: none;
+            stroke: #e2e8f0;
+            stroke-width: 10;
+        }
+        
+        .progress-circle .progress-value {
+            fill: none;
+            stroke: var(--primary);
+            stroke-width: 10;
+            stroke-linecap: round;
+            transition: stroke-dasharray 0.5s ease;
+        }
+        
+        .progress-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            font-weight: 700;
+            font-size: 24px;
+            color: var(--text-primary);
+        }
+        
+        .progress-text small {
+            font-size: 14px;
+            color: var(--text-secondary);
+            display: block;
+            margin-top: 4px;
+        }
+        
+        .subject-progress {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: 28px;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+        
+        .subject-progress:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(99, 102, 241, 0.18);
+        }
+        
+        .subject-progress h3 {
+            font-size: 20px;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+        }
+        
+        .subject-item {
+            margin-bottom: 20px;
+        }
+        
+        .subject-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .subject-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .subject-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+        }
+        
+        .subject-info {
+            flex: 1;
+            text-align: left;
+        }
+        
+        .subject-name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .subject-score {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        
+        .progress-bar-container {
+            height: 12px;
+            background: #e2e8f0;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            border-radius: 6px;
+            transition: width 0.5s ease;
+        }
+        
+        .progress-math .progress-bar {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+        
+        .progress-reading .progress-bar {
+            background: linear-gradient(90deg, var(--secondary) 0%, var(--accent) 100%);
+        }
+        
+        .progress-writing .progress-bar {
+            background: linear-gradient(90deg, var(--accent) 0%, #f472b6 100%);
+        }
+        
+        .progress-puzzle .progress-bar {
+            background: linear-gradient(90deg, #8b5cf6 0%, #ec4899 100%);
+        }
+        
+        .progress-stats {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+        }
+        
+        .progress-percent {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .progress-label {
+            color: var(--text-secondary);
+        }
+        
+        .activity-week {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: 32px;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+        
+        .activity-week:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(99, 102, 241, 0.18);
+        }
+        
+        .activity-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .activity-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .week-days {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+        
+        .day-item {
+            text-align: center;
+            flex: 1;
+            padding: 0 8px;
+        }
+        
+        .day-number {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+        
+        .day-progress {
+            width: 40px;
+            height: 60px;
+            margin: 0 auto;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+        }
+        
+        .day-progress-bar {
+            width: 100%;
+            border-radius: 8px 8px 0 0;
+            background: #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--text-primary);
+            transition: var(--transition);
+        }
+        
+        .day-progress.active .day-progress-bar {
+            background: linear-gradient(to top, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+        }
+        
+        .stats-footer {
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 900px) {
+            .progress-section {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .lessons-page { flex-direction: column; height: auto; }
+            .sidebar { width: 100%; padding: 20px; }
+            .home-buttons { flex-direction: column; }
+            .btn { width: 100%; justify-content: center; }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .week-days {
+                gap: 4px;
+            }
+            
+            .day-item {
+                padding: 0 4px;
+            }
+        }
         @media (max-width: 768px) {
             .lessons-page { flex-direction: column; height: auto; }
             .sidebar { width: 100%; padding: 20px; }
@@ -127,109 +477,189 @@
 
     <!-- Статистика -->
     <div class="page stats-page" id="statsPage">
-        <div style="max-width:800px; text-align:center;">
-            <h1 style="font-size:32px; font-weight:700; margin:20px 0;">Мой прогресс</h1>
-            <div class="stats-overview">
-                <div class="stat-card">
+        <div class="stats-container">
+            <div class="stats-header">
+                <h1 class="stats-title">Мой прогресс</h1>
+                <p class="stats-subtitle">Статистика по всем разделам обучения</p>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card primary">
+                    <div class="stat-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
                     <h3>Всего баллов</h3>
                     <div class="value">1 245</div>
                     <div class="label">+45 сегодня</div>
                 </div>
-                <div class="stat-card">
+                
+                <div class="stat-card secondary">
+                    <div class="stat-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
                     <h3>Уроков</h3>
                     <div class="value">87</div>
                     <div class="label">за всё время</div>
                 </div>
-                <div class="stat-card">
+                
+                <div class="stat-card success">
+                    <div class="stat-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
                     <h3>Серия</h3>
                     <div class="value">12</div>
                     <div class="label">правильных подряд</div>
                 </div>
             </div>
-            <div class="progress-card">
-                <h3>Выполнение задач</h3>
-                <div class="progress-circle">
-                    <svg width="120" height="120" viewBox="0 0 100 100">
-                        <circle cx="50" cy="50" r="40" />
-                        <circle class="progress-value" cx="50" cy="50" r="40" stroke-dasharray="251.2" stroke-dashoffset="75.36" />
-                    </svg>
-                    <div class="progress-text">
-                        65%<br><small>Complete</small>
+            
+            <div class="progress-section">
+                <div class="progress-card">
+                    <h3>Общий прогресс</h3>
+                    <div class="progress-circle">
+                        <svg width="140" height="140" viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="40" />
+                            <circle class="progress-value" cx="50" cy="50" r="40" stroke-dasharray="251.2" stroke-dashoffset="89.42" />
+                        </svg>
+                        <div class="progress-text">
+                            65%<br><small>Выполнено</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="subject-progress">
+                    <h3>Прогресс по предметам</h3>
+                    
+                    <div class="subject-item progress-math">
+                        <div class="subject-header">
+                            <div class="subject-icon" style="background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);">
+                                <i class="fas fa-calculator"></i>
+                            </div>
+                            <div class="subject-info">
+                                <div class="subject-name">Математика</div>
+                                <div class="subject-score">542 балла</div>
+                            </div>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" style="width: 87%;"></div>
+                        </div>
+                        <div class="progress-stats">
+                            <span class="progress-percent">87%</span>
+                            <span class="progress-label">Правильно</span>
+                        </div>
+                    </div>
+                    
+                    <div class="subject-item progress-reading">
+                        <div class="subject-header">
+                            <div class="subject-icon" style="background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div class="subject-info">
+                                <div class="subject-name">Чтение</div>
+                                <div class="subject-score">321 балл</div>
+                            </div>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" style="width: 72%;"></div>
+                        </div>
+                        <div class="progress-stats">
+                            <span class="progress-percent">72%</span>
+                            <span class="progress-label">Выполнено</span>
+                        </div>
+                    </div>
+                    
+                    <div class="subject-item progress-writing">
+                        <div class="subject-header">
+                            <div class="subject-icon" style="background: linear-gradient(135deg, var(--accent) 0%, #f472b6 100%);">
+                                <i class="fas fa-pen"></i>
+                            </div>
+                            <div class="subject-info">
+                                <div class="subject-name">Письмо</div>
+                                <div class="subject-score">198 баллов</div>
+                            </div>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" style="width: 65%;"></div>
+                        </div>
+                        <div class="progress-stats">
+                            <span class="progress-percent">65%</span>
+                            <span class="progress-label">Выполнено</span>
+                        </div>
+                    </div>
+                    
+                    <div class="subject-item progress-puzzle">
+                        <div class="subject-header">
+                            <div class="subject-icon" style="background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);">
+                                <i class="fas fa-puzzle-piece"></i>
+                            </div>
+                            <div class="subject-info">
+                                <div class="subject-name">Головоломки</div>
+                                <div class="subject-score">184 балла</div>
+                            </div>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" style="width: 58%;"></div>
+                        </div>
+                        <div class="progress-stats">
+                            <span class="progress-percent">58%</span>
+                            <span class="progress-label">Решено</span>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="stats-overview">
-                <div class="stat-card">
-                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
-                        <div style="width: 40px; height: 40px; background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white;">
-                            <i class="fas fa-calculator"></i>
-                        </div>
-                        <div>
-                            <div style="font-size:16px; font-weight:600;">Математика</div>
-                            <div style="font-size:14px; color: var(--text-secondary);">542 балла</div>
-                        </div>
-                    </div>
-                    <div style="height: 8px; background: #e2e8f0; border-radius: 4px; overflow: hidden;">
-                        <div style="height: 100%; background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%); width: 87%;"></div>
-                    </div>
-                    <div style="display: flex; justify-content: space-between; margin-top: 8px;">
-                        <span style="font-size:13px; color: var(--text-secondary);">87%</span>
-                        <span style="font-size:13px; font-weight:600;">Правильно</span>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
-                        <div style="width: 40px; height: 40px; background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white;">
-                            <i class="fas fa-book"></i>
-                        </div>
-                        <div>
-                            <div style="font-size:16px; font-weight:600;">Чтение</div>
-                            <div style="font-size:14px; color: var(--text-secondary);">321 балл</div>
-                        </div>
-                    </div>
-                    <div style="height: 8px; background: #e2e8f0; border-radius: 4px; overflow: hidden;">
-                        <div style="height: 100%; background: linear-gradient(90deg, var(--secondary) 0%, var(--accent) 100%); width: 72%;"></div>
-                    </div>
-                    <div style="display: flex; justify-content: space-between; margin-top: 8px;">
-                        <span style="font-size:13px; color: var(--text-secondary);">72%</span>
-                        <span style="font-size:13px; font-weight:600;">Выполнено</span>
-                    </div>
-                </div>
-            </div>
+            
             <div class="activity-week">
-                <h3>Активность за неделю</h3>
+                <div class="activity-header">
+                    <h3 class="activity-title">Активность за неделю</h3>
+                </div>
                 <div class="week-days">
                     <div class="day-item">
                         <div class="day-number">Пн</div>
-                        <div class="day-progress"><div class="day-progress-bar">12</div></div>
+                        <div class="day-progress">
+                            <div class="day-progress-bar" style="height: 30%;">12</div>
+                        </div>
                     </div>
                     <div class="day-item">
                         <div class="day-number">Вт</div>
-                        <div class="day-progress active"><div class="day-progress-bar">24</div></div>
+                        <div class="day-progress active">
+                            <div class="day-progress-bar" style="height: 50%;">24</div>
+                        </div>
                     </div>
                     <div class="day-item">
                         <div class="day-number">Ср</div>
-                        <div class="day-progress"><div class="day-progress-bar">8</div></div>
+                        <div class="day-progress">
+                            <div class="day-progress-bar" style="height: 20%;">8</div>
+                        </div>
                     </div>
                     <div class="day-item">
                         <div class="day-number">Чт</div>
-                        <div class="day-progress active"><div class="day-progress-bar">31</div></div>
+                        <div class="day-progress active">
+                            <div class="day-progress-bar" style="height: 60%;">31</div>
+                        </div>
                     </div>
                     <div class="day-item">
                         <div class="day-number">Пт</div>
-                        <div class="day-progress"><div class="day-progress-bar">19</div></div>
+                        <div class="day-progress">
+                            <div class="day-progress-bar" style="height: 40%;">19</div>
+                        </div>
                     </div>
                     <div class="day-item">
                         <div class="day-number">Сб</div>
-                        <div class="day-progress active"><div class="day-progress-bar">45</div></div>
+                        <div class="day-progress active">
+                            <div class="day-progress-bar" style="height: 80%;">45</div>
+                        </div>
                     </div>
                     <div class="day-item">
                         <div class="day-number">Вс</div>
-                        <div class="day-progress"><div class="day-progress-bar">22</div></div>
+                        <div class="day-progress">
+                            <div class="day-progress-bar" style="height: 45%;">22</div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <button class="btn btn-outline" id="backHome" style="margin-top:30px;">← Назад</button>
+            
+            <div class="stats-footer">
+                <button class="btn btn-outline" id="backHome">← Назад</button>
+            </div>
         </div>
     </div>
 

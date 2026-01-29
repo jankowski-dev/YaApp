@@ -88,6 +88,48 @@
             max-width: 1200px;
             width: 100%;
             padding: 0 20px;
+            margin: 0 auto;
+            overflow-x: auto;
+        }
+        
+        .stats-page {
+            overflow-x: auto;
+            min-height: 100vh;
+        }
+        
+        /* Responsive adjustments for stats page */
+        @media (max-width: 768px) {
+            .progress-section {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .week-days {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            
+            .day-item {
+                min-width: calc(100% / 7 - 10px);
+                margin-bottom: 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .day-item {
+                min-width: 40px;
+            }
+            
+            .stats-container {
+                padding: 0 10px;
+            }
+            
+            .stat-card, .progress-card, .subject-progress, .activity-week {
+                padding: 20px !important;
+            }
         }
         
         .stats-header {
@@ -181,6 +223,7 @@
             grid-template-columns: 1fr 1fr;
             gap: 24px;
             margin-bottom: 40px;
+            overflow-x: auto;
         }
         
         .progress-card {
@@ -657,8 +700,8 @@
                 </div>
             </div>
             
-            <div class="stats-footer">
-                <button class="btn btn-outline" id="backHome">← Назад</button>
+            <div class="stats-footer" style="margin-top: 30px; text-align: center;">
+                <button class="btn btn-outline" id="backHome"><i class="fas fa-arrow-left"></i> На главную</button>
             </div>
         </div>
     </div>
